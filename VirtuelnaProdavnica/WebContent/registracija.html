@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Registracija</title>
+	<link 
+		rel = "stylesheet"
+		type= "text/css"
+		href = "css/style.css"
+	>
+	</head>
+
+	<body>
+		<h1 class= "bojiSlovaUPlavo">Ovo je strana za registraciju</h1>
+
+		<a href = "index.html">Prebaci me na index stranu</a>
+
+		<a href = "index.html"><input type ="submit" value="nazad"></a>
+
+		<a href = "index.html"><img src ="slike/back.jpg" style="width:30px; heigh:30px;"/></a>
+		<br>
+		<br>
+				
+				<!-- PutanjaServletaZaRegistraciju - uzeta iz registracionog servleta -->
+		<form id=formaRegistracija action="PutanjaServletaZaRegistraciju" method="get">
+			User name:<br>
+			<input type= "text" placeholder="User name" name = "userName"><br><br>
+			<input type= "password" placeholder="Password" name = "password"><br><br>
+			<input type= "password" placeholder="Repeat password" name = "repeatPassword"><br><br>
+
+			<input type= "submit" value="Sign up!!!" style="width:20%;"><br><br>
+
+			
+
+		</form>
+
+	</body>
+</html>
