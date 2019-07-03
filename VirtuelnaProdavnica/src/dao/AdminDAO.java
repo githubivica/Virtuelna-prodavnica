@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import javax.persistence.Index;
 import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
 
@@ -93,45 +94,32 @@ public class AdminDAO {
 
 	}	
 	
-	public static boolean obrisiUsera(String userName, String password) {
+	public static boolean obrisiUsera(String userName) {		//brise usera
 		
-		LoginDAO loginDAO = new LoginDAO();
-		//User user = new User();
+		User user = new User();
 		
-		boolean proveriUsera = loginDAO.daLiPostojiUserUbazi(userName);		//da li postoji user u bazi
-			if(proveriUsera) {													
-				boolean proveriPassword = loginDAO.daLiPasswordOdgovaraUseru(userName, password); //da li je dobar password
-					if(proveriPassword) {						//ako je dobar password
-						
-						Session session = sf.openSession();
-						session.beginTransaction();
-						
-						try {
-							String upit = "FROM User WHERE userName = :korisnickoIme";
-							Query query = session.createQuery(upit);
-							query.setParameter("korisnickoIme", userName);
+		Session session = sf.openSession();
+		session.beginTransaction();
+		
+		try {
+			String upit = "FROM User WHERE userName = :korisnickoIme";
+			Query query = session.createQuery(upit);
+			query.setParameter("korisnickoIme", userName);
 
-							List<User> userKojiSeBrise = query.getResultList();		//uzimamo listu usera sa tim imenom
-							session.delete(userKojiSeBrise);			//ovde treba da ga brise
+			List<User> userKojiSeBrise = query.getResultList();		//uzimamo listu usera sa tim imenom
+			user = userKojiSeBrise.get(0);
+			
+			session.delete(user);			//ovde treba da ga brise
 
-							session.getTransaction().commit();
-							return true;
-						} catch (Exception e) {
-							session.getTransaction().rollback();
-							return false;
-						}finally {
-							session.close();
-						}						
-						
-					}else {										//ako nije dobar password vrati ga na login stranu
-						System.out.println("Ne postoji taj password");		//ako ne postoji
-						return false;
-					}
-
-			}else {											//ako ne postiji user vrati ga na login stranu		
-				System.out.println("Ne postoji taj userName");		//ako ne postoji
-				return false;
-			}
+			session.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			return false;
+		}finally {
+			session.close();
+		}					
+		
 	
 	
 	}

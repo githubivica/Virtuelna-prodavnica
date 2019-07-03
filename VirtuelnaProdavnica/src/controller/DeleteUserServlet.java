@@ -15,10 +15,9 @@ public class DeleteUserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userName = request.getParameter("user");
-		String password = request.getParameter("password");
+		String userName = request.getParameter("userName");
 		
-		boolean obrisiUsera = AdminDAO.obrisiUsera(userName, password);
+		boolean obrisiUsera = AdminDAO.obrisiUsera(userName);
 
 			if(obrisiUsera) {
 				response.sendRedirect("view/administrator.jsp");

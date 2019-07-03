@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>obrisi usera</title>
+<title>obrisi usera error</title>
 </head>
 <body>
 
+<h1>Nisi dobro uradio nesto! Molim te ponovi postupak!</h1><br><br>
 <a href = "administrator.jsp">back to admin page</a><br><br>
 
 	<form action="../DeleteUserServlet">

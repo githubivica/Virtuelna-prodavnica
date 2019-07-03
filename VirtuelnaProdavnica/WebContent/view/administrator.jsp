@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 
 <%@ page import="model.User" %>
+<%@ page import="model.Artikal" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>   
-<%@page import="dao.AdminDAO"%>    
+<%@page import="dao.AdminDAO"%>
+<%@page import="dao.UserDAO"%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +23,9 @@
 
 	<h3>OVO JE ADMIN STRANA </h3>
 	
-		<p>Ovo je administratorova strana. Ovde cu ubaciti stvari koje se ticu administratorskih poslova</p><br>
+		<p>Ovo je administratorova strana. Ovde cu ubaciti stvari koje se ticu administratorskih poslova</p>
+		
+		<a href = "index.html">back to index</a> <br><br>
 	
 		<a href = "addBalance.jsp"><button>ADD BALANCE</button></a>
 		<a href = "addArtikal.jsp"><button>ADD ARTIKAL</button></a>
@@ -55,7 +59,39 @@
 		<%
 			}
 		%>
-	</table><br><br>
+	</table><br>
+	
+	<hr>
+	
+	<%
+		List<Artikal> listaArtikala = new ArrayList<Artikal>();
+		listaArtikala = UserDAO.vratiSveArtikle();
+	
+	%>
+	<table border="1">
+		<tr>
+			<th> ID ARTIKAL  </th>
+			<th> IME ARTIKLA </th>
+			<th>    CENA     </th>
+			<th>   STANJE    </th>
+			<th>   POPUST    </th>
+		</tr>
+		<%
+			for(Artikal u: listaArtikala){
+		%>
+			<tr>
+				<td> <%= u.getIdArtikal()   %> </td>
+				<td> <%= u.getImeArtikla() %> </td>
+				<td> <%= u.getCena() %> </td>
+				<td> <%= u.getStanje() %> </td>
+				<td> <%= u.getPopust() %> </td>
+			</tr>
+		<%
+			}
+		%>
+	</table><br>
+	
+	<hr>
 	
 		<%
 		int a = 5;

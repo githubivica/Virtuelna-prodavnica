@@ -13,9 +13,9 @@ import model.User;
 
 public class UserDAO {
 
-	private SessionFactory sf = new Configuration().configure().buildSessionFactory();
+	private static SessionFactory sf = new Configuration().configure().buildSessionFactory();
 
-	public List<Artikal> vratiSveArtikle(){				//metoda vrati artikle
+	public static List<Artikal> vratiSveArtikle(){				//metoda vrati artikle
 
 		List<Artikal> listaArtikala = null;
 

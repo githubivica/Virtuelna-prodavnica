@@ -19,7 +19,9 @@
 	<h1>DOBRODOSLI USER</h1>
 	ZDRAVO <%=user.getUserName() %> <br>
 	
-	<h2>ZDRAVO <%=user.getUserName() %></h2>
+	<h2>ZDRAVO <%=user.getUserName() %></h2><br><br>
+	
+	<a href = "index.html">back to index</a> <br><br>
 
 	<h3>STANJE NA VASEM RACUNU JE: <%=user.getNovcanik() %> </h3>
 
