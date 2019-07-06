@@ -14,14 +14,14 @@
 </head>
 <body>
 	<%
-		User user = (User)session.getAttribute("ovdeJeUserObjekat");
+		User user = (User)session.getAttribute("ovdeJeUserObjekat");		//iz LoginServlet
 	%>
 	<h1>DOBRODOSLI USER</h1>
 	ZDRAVO <%=user.getUserName() %> <br>
 	
 	<h2>ZDRAVO <%=user.getUserName() %></h2><br><br>
 	
-	<a href = "index.html">back to index</a> <br><br>
+	<a href = "../index.html">back to index</a> <br><br>
 
 	<h3>STANJE NA VASEM RACUNU JE: <%=user.getNovcanik() %> </h3>
 
@@ -29,7 +29,7 @@
 		UserDAO userDAO = new UserDAO();
 		List<Artikal> listaArtikala = userDAO.vratiSveArtikle();
 	%>
-	<form>
+	<form action="../PlatiRacunServlet" metod="get">
 		<table border="1">
 			<tr>
 				<th>id</th>
@@ -51,9 +51,9 @@
 					<td>
 						<select name="kolicina">
 							<%
-								for(int i = 1; i<= a.getStanje(); i++){
+								for(int i = 0; i<= a.getStanje(); i++){
 							%>
-								<option value="<%=i %>"><%=i %></option>
+								<option value="<%=i %>"><%=i%></option>
 							<% 
 								}
 							%>

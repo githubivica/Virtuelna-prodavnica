@@ -25,19 +25,32 @@
 	
 		<p>Ovo je administratorova strana. Ovde cu ubaciti stvari koje se ticu administratorskih poslova</p>
 		
-		<a href = "index.html">back to index</a> <br><br>
-	
-		<a href = "addBalance.jsp"><button>ADD BALANCE</button></a>
-		<a href = "addArtikal.jsp"><button>ADD ARTIKAL</button></a>
-		<a href = "deleteUser.jsp"><button>DELETE USER</button></a><br><br>
-
-	<hr>
-	<br>
-	
+		<a href = "../index.html">back to index</a> <br><br>
+		
 	<%
 		List<User> listaUsera = new ArrayList<User>();
 		listaUsera = AdminDAO.vratiSveUsere();
 	%>
+	
+	<hr>
+		<br>
+		<a href = "addBalance.jsp"><button>ADD BALANCE</button></a>
+		<a href = "deleteUser.jsp"><button>DELETE USER</button></a>
+		
+		<p> Podesavanje parametara za USERA:
+			<select>
+				<%
+					for(User u: listaUsera){
+				%>
+					<option><%= u.getUserName() %></option>
+				<%
+					}
+				%>
+			</select>
+			<a href = "editUser.jsp"><button>EDIT</button></a>
+		</p>
+		
+		
 	<table border="1">
 		<tr>
 			<th> ID        </th>
@@ -45,6 +58,7 @@
 			<th> PASSWORD  </th>
 			<th> NOVCANIK  </th>
 			<th> ULOGA  </th>
+			<th> EDIT  </th>
 		</tr>
 		<%
 			for(User u: listaUsera){
@@ -55,13 +69,16 @@
 				<td> <%= u.getPassword() %> </td>
 				<td> <%= u.getNovcanik() %> </td>
 				<td> <%= u.getRola() %> </td>
+				<td><a href = "editUser.jsp"><button>EDIT <%= u.getUserName() %></button></a></td>
 			</tr>
 		<%
 			}
 		%>
 	</table><br>
 	
-	<hr>
+	
+	<hr><br>
+		<a href = "addArtikal.jsp"><button>ADD ARTIKAL</button></a><br><br>
 	
 	<%
 		List<Artikal> listaArtikala = new ArrayList<Artikal>();

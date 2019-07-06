@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 					if(proveriPassword) {						//ako je dobar password
 						user = loginDAO.vratiUsera(userName);
 						HttpSession session = request.getSession();
-						session.setAttribute("ovdeJeUserObjekat", user);
+						session.setAttribute("ovdeJeUserObjekat", user);	//ovo uzima iz sesije - LoginServlet
 							if(user.getRola().equals(Rola.GAZDA)) {			//ako je administrator
 								response.sendRedirect("view/administrator.jsp");	//posalji ga na administrator page
 							}else {													//ako nije administrator

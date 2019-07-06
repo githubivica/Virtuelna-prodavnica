@@ -96,23 +96,34 @@ public class AdminDAO {
 	
 	public static boolean obrisiUsera(String userName) {		//brise usera
 		
+		LoginDAO loginDAO = new LoginDAO();
 		User user = new User();
 		
 		Session session = sf.openSession();
 		session.beginTransaction();
 		
 		try {
-			String upit = "FROM User WHERE userName = :korisnickoIme";
-			Query query = session.createQuery(upit);
-			query.setParameter("korisnickoIme", userName);
-
-			List<User> userKojiSeBrise = query.getResultList();		//uzimamo listu usera sa tim imenom
-			user = userKojiSeBrise.get(0);
 			
-			session.delete(user);			//ovde treba da ga brise
+			boolean proveriUsera = loginDAO.daLiPostojiUserUbazi(userName);		//da li postoji user u bazi
+			if(proveriUsera) {	
+			
+			
+					String upit = "FROM User WHERE userName = :korisnickoIme";
+					Query query = session.createQuery(upit);
+					query.setParameter("korisnickoIme", userName);
+		
+					List<User> userKojiSeBrise = query.getResultList();		//uzimamo listu usera sa tim imenom
+					user = userKojiSeBrise.get(0);
+					
+					session.delete(user);			//ovde treba da ga brise
+					session.getTransaction().commit();
+					
+					return true;
+			}else {											//ako ne postiji user vrati ga na login stranu		
+				System.out.println("Ne postoji taj userName");		//ako ne postoji
+				return false;
+			}
 
-			session.getTransaction().commit();
-			return true;
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			return false;
