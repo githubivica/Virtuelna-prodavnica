@@ -36,6 +36,7 @@
 		<br>
 		<a href = "addBalance.jsp"><button>ADD BALANCE</button></a>
 		<a href = "deleteUser.jsp"><button>DELETE USER</button></a>
+		<a href = "editUserDugme.jsp"><button>EDIT USER</button></a>
 		
 		<p> Podesavanje parametara za USERA:
 			<select>

@@ -45,8 +45,7 @@ public class LoginDAO {
 			session.close();
 		}
 	}
-	
-	
+		
 	public boolean daLiPasswordOdgovaraUseru(String userName, String password) {
 														//da li odgovara password useru
 		Session session = sf.openSession();

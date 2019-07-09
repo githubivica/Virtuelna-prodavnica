@@ -13,6 +13,7 @@ import org.hibernate.cfg.Configuration;
 import model.Artikal;
 import model.Rola;
 import model.User;
+import dao.LoginDAO;
 
 public class AdminDAO {
 
@@ -107,7 +108,6 @@ public class AdminDAO {
 			boolean proveriUsera = loginDAO.daLiPostojiUserUbazi(userName);		//da li postoji user u bazi
 			if(proveriUsera) {	
 			
-			
 					String upit = "FROM User WHERE userName = :korisnickoIme";
 					Query query = session.createQuery(upit);
 					query.setParameter("korisnickoIme", userName);
@@ -130,11 +130,28 @@ public class AdminDAO {
 		}finally {
 			session.close();
 		}					
-		
-	
-	
 	}
 	
+	
+	public static boolean izmeniUsera(User user, String userName, String password, double novcanikDouble) {
+		
+		user.setUserName(userName);
+		user.setPassword(password);
+		user.setNovcanik(novcanikDouble);
+
+		Session session = sf.openSession();
+		session.beginTransaction();
+			try {
+				session.update(user);
+				session.getTransaction().commit();
+				return true;
+			} catch (Exception e) {
+				session.getTransaction().rollback();
+				return false;
+		}finally {
+			session.close();
+		}
+	}
 	
 	
 }

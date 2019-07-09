@@ -15,9 +15,9 @@
 
 <a href = "administrator.jsp">back to admin page</a><br><br>
 
-<%
-
-user = loginDAO.vratiUsera(userName);
+<%-- ovo sam probao za dugme u tabeli i za edit iznad tabele
+	<%
+	user = loginDAO.vratiUsera(userName);
 	
 	%>		
 		<form action="../EditUserServlet" metod="get">
@@ -26,7 +26,7 @@ user = loginDAO.vratiUsera(userName);
 			NOVCANIK : <input type="text" placeholder=<%= u.getNovcanik() %> name = "novcanik">
 			ULOGA	 : <input type="text" placeholder=<%= u.getRola() 	  %> name = "uloga">
 					   <input type="submit" value="DODAJ">		
-		</form>
+		</form> --%>
 
 
 </body>
