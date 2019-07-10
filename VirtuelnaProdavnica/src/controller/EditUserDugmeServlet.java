@@ -25,11 +25,14 @@ public class EditUserDugmeServlet extends HttpServlet {
 		boolean proveriUsername = ld.daLiPostojiUserUbazi(userName);
 		
 		if(proveriUsername) {
-			User user = ld.vratiUsera(userName);
+			User user = ld.vratiUsera(userName);				//ovde imam usera
 			
+			long idUser = user.getIdUser();						//ovde imam idUsera
 			String password =  user.getPassword();
 			double novcanik =  user.getNovcanik();
 			
+				request.setAttribute("user", user);				//u setAttribute postavljam usera
+				request.setAttribute("idUser", idUser);			//u setAttribute postavljam idUsera
 				request.setAttribute("userName", userName);
 				request.setAttribute("password", password);
 				request.setAttribute("novcanik", novcanik);	

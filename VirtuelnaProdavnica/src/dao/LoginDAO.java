@@ -108,6 +108,33 @@ public class LoginDAO {
 
 	}
 
+	
+	public User vratiUseraPoId(long idUser) {		//vrati usera sa tim userName
+			
+			User user = new User();
+	
+			Session session = sf.openSession();
+			session.beginTransaction();
+	
+			try {
+				String upit = "FROM User WHERE userName = :idZaKojiTrazimoUser";
+				Query query = session.createQuery(upit);
+				query.setParameter("idZaKojiTrazimoUser", idUser);
+	
+				List<User> listaUsera = query.getResultList();		//vraca listu usera sa tim podacima
+	
+				user = listaUsera.get(0);
+	
+				return user;		
+			} catch (Exception e) {
+				session.getTransaction().rollback();
+				return null;
+			}finally {
+				session.close();
+			}
+	
+		}
+
 
 	
 	

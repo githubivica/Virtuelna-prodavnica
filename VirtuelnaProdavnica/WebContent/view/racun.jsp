@@ -6,25 +6,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>racun</title>
 </head>
 <body>
 <%	User user = (User) session.getAttribute("ovdeJeUserObjekat");		//ovo uzima iz sesije - LoginServlet!
-	int totalPrice = (Integer)request.getAttribute("totalPrice");		//uzima iz PlatiRacun Servlet!
+	double totalPrice = (double)request.getAttribute("totalPrice");		//uzima iz PlatiRacun Servlet!
 	List<Artikal> listaArtikala = (List<Artikal>)request.getAttribute("ListaArtikala");	//uzima iz PlatiRacun Servlet!
 	List<String> listaKolicina = (List<String>)request.getAttribute("listaKolicina");	//uzima iz PlatiRacun Servlet!
 %>
 
 User: <%= user.getUserName() %> <br><br>
-Racun: 	<table>
+Racun: 	<table border="1">
 			<tr>
 				<th>ime artikla</th>
 				<th>cena</th>
 				<th>popust</th>
 				<th>kolicina</th>
 			</tr>
-			<% for(int i = 0; i<listaArtikala.size(); i++){ %>
+			<% for(int i = 0; i<listaArtikala.size() ; i++){ %>
 				<tr>
 					<td><%=listaArtikala.get(i).getImeArtikla() %></td>
 					<td><%=listaArtikala.get(i).getCena() %></td>
@@ -37,7 +37,7 @@ Racun: 	<table>
 
 Total price: <%=totalPrice %> <br><br>
 
-<a href="user,jsp">back to user</a>
+<a href="view/user.jsp">back to user</a>
 
 </body>
 </html>
