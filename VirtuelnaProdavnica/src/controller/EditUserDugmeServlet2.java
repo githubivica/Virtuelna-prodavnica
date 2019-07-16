@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.AdminDAO;
+import dao.LoginDAO;
 //import dao.LoginDAO;
 import model.User;
 
@@ -17,8 +18,10 @@ public class EditUserDugmeServlet2 extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		User user = (User)request.getAttribute("user");			//preko getAttribute sam uzeo usera iz EditUserDugmeServlet
-		//long idUser = (long)request.getAttribute("idUser");
+		//User user = (User)request.getAttribute("user");			//preko getAttribute sam uzeo usera iz EditUserDugmeServlet
+		String idUser =  request.getParameter("idUser");
+		
+		long idUser2 = Long.parseLong(idUser);
 		
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
@@ -26,10 +29,13 @@ public class EditUserDugmeServlet2 extends HttpServlet {
 		
 		double novcanikDouble = Double.parseDouble(novcanik);
 		
-		//LoginDAO ld = new LoginDAO();				//ne treba posto sam usera useo preko getAttribute
-		//User user = ld.vratiUseraPoId(idUser);
-		
-		boolean izmeniUsera = AdminDAO.izmeniUsera(user, userName, password, novcanikDouble);
+		LoginDAO ld = new LoginDAO();				//ne treba posto sam usera useo preko getAttribute
+		User user = ld.vratiUseraPoId(idUser2);
+		user.setUserName(userName);
+		user.setPassword(password);
+		user.setNovcanik(novcanikDouble);
+	
+		boolean izmeniUsera = AdminDAO.izmeniUsera(user);
 			if (izmeniUsera) {
 				response.sendRedirect("view/administrator.jsp");
 			}else {

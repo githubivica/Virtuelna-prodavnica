@@ -111,20 +111,15 @@ public class LoginDAO {
 	
 	public User vratiUseraPoId(long idUser) {		//vrati usera sa tim userName
 			
-			User user = new User();
+			User user = null;
 	
 			Session session = sf.openSession();
 			session.beginTransaction();
 	
 			try {
-				String upit = "FROM User WHERE userName = :idZaKojiTrazimoUser";
-				Query query = session.createQuery(upit);
-				query.setParameter("idZaKojiTrazimoUser", idUser);
-	
-				List<User> listaUsera = query.getResultList();		//vraca listu usera sa tim podacima
-	
-				user = listaUsera.get(0);
-	
+				user = (User) session.get(User.class, idUser);
+
+				session.getTransaction().commit();
 				return user;		
 			} catch (Exception e) {
 				session.getTransaction().rollback();

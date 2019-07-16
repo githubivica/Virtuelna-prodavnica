@@ -32,10 +32,10 @@ public class EditUserDugmeServlet extends HttpServlet {
 			double novcanik =  user.getNovcanik();
 			
 				request.setAttribute("user", user);				//u setAttribute postavljam usera
-				request.setAttribute("idUser", idUser);			//u setAttribute postavljam idUsera
+			/*	request.setAttribute("idUser", idUser);			//u setAttribute postavljam idUsera
 				request.setAttribute("userName", userName);
 				request.setAttribute("password", password);
-				request.setAttribute("novcanik", novcanik);	
+				request.setAttribute("novcanik", novcanik);	*/
 		
 				RequestDispatcher rd = request.getRequestDispatcher("view/editUserDugme2.jsp");
 				rd.forward(request, response);

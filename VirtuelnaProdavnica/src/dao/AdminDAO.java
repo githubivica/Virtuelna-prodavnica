@@ -133,11 +133,9 @@ public class AdminDAO {
 	}
 	
 	
-	public static boolean izmeniUsera(User user, String userName, String password, double novcanikDouble) {
+	public static boolean izmeniUsera(User user) {
 		
-		user.setUserName(userName);
-		user.setPassword(password);
-		user.setNovcanik(novcanikDouble);
+
 
 		Session session = sf.openSession();
 		session.beginTransaction();

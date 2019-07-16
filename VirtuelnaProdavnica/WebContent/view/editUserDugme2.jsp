@@ -12,18 +12,21 @@
 	<a href = "administrator.jsp">back to admin page</a><br><br>
 	
 	 <% 
-	 	long idUser = (long)request.getAttribute("idUser");
+	 	/* long idUser = (long)request.getAttribute("idUser"); 
 	 	String userName = (String)request.getAttribute("userName");
 		String password = (String)request.getAttribute("password");
-		double novcanik = (double)request.getAttribute("novcanik");
+		double novcanik = (double)request.getAttribute("novcanik");*/
+		User user = (User)request.getAttribute("user");
+		
 	%>
 	
 	<p>Unesi nove podatke za usera!!!</p><br><br>
-		<form action="../Edit2">
-				USER NAME: <input type="text" placeholder= " <%= userName %>" name = "userName"><br>
-				PASSWORD : <input type="text" placeholder= " <%= password %>" name = "password"><br>
-				NOVCANIK : <input type="text" placeholder= " <%= novcanik %>" name = "novcanik"><br><br>
-							   <input type="submit" value="IZMENI">		
+		<form action="Edit2" method="get">
+							<input type="hidden" value="<%= user.getIdUser()%>" name="idUser"/>
+				USER NAME: <input type="text" placeholder= " <%= user.getUserName() %>" name = "userName"/><br>
+				PASSWORD : <input type="text" placeholder= " <%= user.getPassword() %>" name = "password"/><br>
+				NOVCANIK : <input type="text" placeholder= " <%= user.getNovcanik() %>" name = "novcanik"/><br><br>
+							   <input type="submit" value="IZMENI"/>		
 		</form>
 	
 	
